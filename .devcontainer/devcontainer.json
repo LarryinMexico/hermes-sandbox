@@ -1,6 +1,16 @@
 {
   "name": "Hermes Sandbox",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  "runArgs": ["--network=none"],
-  "postCreateCommand": "pip install hermes-agent"
+  "forwardPorts": [5000],
+  "portsAttributes": {
+    "5000": {
+      "label": "Telegram Webhook",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt",
+  "remoteEnv": {
+    "PYTHONUNBUFFERED": "1"
+  }
 }
