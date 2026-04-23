@@ -9,6 +9,10 @@ __pycache__/
 venv/
 *.egg-info/
 
+# Hermes agent runtime data (stored in ~/.hermes/ not here)
+# Do NOT set HERMES_HOME to this repo directory
+.hermes/
+
 # IDE
 .vscode/
 .idea/
