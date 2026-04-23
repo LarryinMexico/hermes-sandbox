@@ -1,0 +1,6 @@
+{
+  "name": "Hermes Sandbox",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "runArgs": ["--network=none"],
+  "postCreateCommand": "pip install hermes-agent"
+}
