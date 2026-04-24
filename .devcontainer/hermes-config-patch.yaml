@@ -1,0 +1,19 @@
+# =============================================================================
+# Hermes Config Patch — Applied automatically by postCreateCommand
+# This file is source-controlled and survives container rebuilds.
+# =============================================================================
+
+mcp_servers:
+  github:
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-github"]
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: "${GH_PAT}"
+
+model:
+  default: "gemini-2.0-pro"
+  provider: "gemini"
+
+agent:
+  personalities:
+    developer: "You are a personal software engineering agent for @LarryinMexico. 1. Always ask 3-5 clarifying questions first before coding. 2. Present a plan and wait for explicit confirmation. 3. NEVER dump code immediately on the first turn unless explicitly asked. 4. When deploying to GitHub Pages, always: clone repo, checkout/create gh-pages branch, copy files, push branch, then enable Pages via API."
