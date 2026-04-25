@@ -2,7 +2,7 @@
   "name": "Hermes Sandbox",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
 
-  "postCreateCommand": "HERMES_SKIP_SETUP=1 bash -c 'curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash' && source ~/.bashrc && python3 -c \"\nimport yaml, os\npatch_path = '/workspaces/hermes-sandbox/.devcontainer/hermes-config-patch.yaml'\nconfig_path = os.path.expanduser('~/.hermes/config.yaml')\nwith open(patch_path) as f:\n    patch = yaml.safe_load(f)\nwith open(config_path) as f:\n    config = yaml.safe_load(f)\nconfig.update(patch)\nwith open(config_path, 'w') as f:\n    yaml.dump(config, f, default_flow_style=False)\nprint('✅ Hermes config patch applied (MCP + model + personalities)')\n\" && echo '✅ Hermes ready!'",
+  "postCreateCommand": "HERMES_SKIP_SETUP=1 bash -c 'curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash' && source ~/.bashrc && ~/.hermes/hermes-agent/venv/bin/python3 -c \"\nimport yaml, os\npatch_path = '/workspaces/hermes-sandbox/.devcontainer/hermes-config-patch.yaml'\nconfig_path = os.path.expanduser('~/.hermes/config.yaml')\nwith open(patch_path) as f:\n    patch = yaml.safe_load(f)\nwith open(config_path) as f:\n    config = yaml.safe_load(f)\nconfig.update(patch)\nwith open(config_path, 'w') as f:\n    yaml.dump(config, f, default_flow_style=False)\nprint('✅ Hermes config patch applied (MCP + model + personalities)')\n\" && echo '✅ Hermes ready!'",
 
   "postStartCommand": "bash -c 'source ~/.bashrc && if command -v hermes >/dev/null 2>&1; then nohup hermes gateway > /tmp/hermes-gateway.log 2>&1 & echo \"✅ Hermes gateway starting\"; else echo \"ℹ️  Run hermes setup first\"; fi'",
 
